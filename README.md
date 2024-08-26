@@ -1,4 +1,4 @@
-![ScreenShot-1](https://github.com/user-attachments/assets/263b858c-c8a3-4944-a4d5-384c8072cc99)# Akhil-21BEC0445
+# Akhil-21BEC0445
 Hit Wicket task submission
 <p align="center"><img src="https://socialify.git.ci/Akhil-donthula-8977/Akhil_21BEC0445/image?language=1&amp;owner=1&amp;name=1&amp;stargazers=1&amp;theme=Light" alt="project-image"></p>
 
