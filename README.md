@@ -1,4 +1,4 @@
-# Akhil-21BEC0445
+![ScreenShot-1](https://github.com/user-attachments/assets/263b858c-c8a3-4944-a4d5-384c8072cc99)# Akhil-21BEC0445
 Hit Wicket task submission
 <p align="center"><img src="https://socialify.git.ci/Akhil-donthula-8977/Akhil_21BEC0445/image?language=1&amp;owner=1&amp;name=1&amp;stargazers=1&amp;theme=Light" alt="project-image"></p>
 
@@ -6,14 +6,12 @@ Hit Wicket task submission
 
 <h2>Project Screenshots:</h2>
 
-<img src="https://www.dropbox.com/scl/fi/w9thu4ahjsp1jenlvj9b2/screenshot_3.png?rlkey=tw5gb8q4yn4kk5zhhgmhmc9yo&amp;st=rosue1dx&amp;dl=0" alt="project-screenshot" width="200" height="200/">
+![ScreenShot-1](https://github.com/user-attachments/assets/4bb42263-725f-4314-8eae-de3982695859)
 
-<img src="https://www.dropbox.com/scl/fi/w9thu4ahjsp1jenlvj9b2/screenshot_3.png?rlkey=tw5gb8q4yn4kk5zhhgmhmc9yo&amp;st=rosue1dx&amp;dl=0" alt="project-screenshot" width="200" height="200/">
+  ![screenShot-2](https://github.com/user-attachments/assets/32de980a-d5fd-425c-b549-02957b54e7b9)
 
-<img src="https://www.dropbox.com/scl/fi/601hruyv26cnac5ujtw2j/screenShot-2.png?rlkey=l71m3px4oeyu1lh6rx5tj7dtc&amp;st=cspxkzi3&amp;dl=0" alt="project-screenshot" width="200" height="200/">
+  ![screenshot_3](https://github.com/user-attachments/assets/24726e4c-fc40-4a47-8cc3-e778fccbbbea)
 
-  
-  
 <h2>🧐 Features</h2>
 
 Here're some of the project's best features:
