@@ -19,6 +19,11 @@ Eraser IO link for plan :[Link](https://app.eraser.io/workspace/DnYLAtrH4inRLhYy
 
 ![invalid_turn](https://github.com/user-attachments/assets/a862cbf8-e453-439d-b7ae-507c65253b6b)
 
+<h3>user turn shown:</h3>
+
+![Turn Updation](https://github.com/user-attachments/assets/9b9af156-b645-4ed8-a462-3262d7433bdf)
+
+
 <h3>user shown with directions to where he can move</h3>
 
 ![user_valid_directions](https://github.com/user-attachments/assets/0bc65b9c-1762-49a8-8dd4-281ce9d46eff)
