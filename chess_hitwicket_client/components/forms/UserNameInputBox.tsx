@@ -7,11 +7,12 @@ import { showToast } from '../ToastComponents/AlertUserControlToast';
 
 interface UserNameInputBoxProps {
   userName: string;
-  setUserName: React.Dispatch<React.SetStateAction<string>>;
+  setUserName: Function;
   socket: Socket;
+  udpatedSucessfully?:Function
 }
 
-const UserNameInputBox: React.FC<UserNameInputBoxProps> = ({ userName, setUserName, socket }) => {
+const UserNameInputBox: React.FC<UserNameInputBoxProps> = ({ userName, setUserName, socket,udpatedSucessfully }) => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserName(e.target.value);
@@ -25,6 +26,10 @@ const UserNameInputBox: React.FC<UserNameInputBoxProps> = ({ userName, setUserNa
     if (userName) {
       await registerUser(userName, socket);
     }
+
+    if(udpatedSucessfully!=null){
+      udpatedSucessfully();
+    }
     
   };
 
@@ -32,8 +37,7 @@ const UserNameInputBox: React.FC<UserNameInputBoxProps> = ({ userName, setUserNa
     <div className="w-full max-w-sm mx-auto mt-10">
       <label
         htmlFor="username"
-        className="block text-gray-700 text-sm font-bold mb-2"
-      >
+        className="block text-gray-700 text-sm font-bold mb-2">
         Username
       </label>
       <input
@@ -44,10 +48,8 @@ const UserNameInputBox: React.FC<UserNameInputBoxProps> = ({ userName, setUserNa
         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
         placeholder="Enter your username"
       />
-      <div className="mt-4 text-gray-600">
-        Your username is: <span className="font-semibold">{userName}</span>
-      </div>
-      <Button onClick={handleClick} className='bg-green-200 rounded-xl m-2'>Register</Button>
+    
+      <Button onClick={handleClick} className='bg-blue-600 hover:bg-blue-900 text-white rounded-xl m-2'>Done</Button>
     </div>
   );
 };

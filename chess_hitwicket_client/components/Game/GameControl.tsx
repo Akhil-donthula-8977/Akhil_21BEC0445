@@ -14,13 +14,15 @@ import { showToast } from '../ToastComponents/AlertUserControlToast'
 import { updateMovementFromUs } from '@/lib/actions'
 import UserNameInputBox from '../forms/UserNameInputBox'
 import CheckboxExample from '../forms/checkBoxExample'
+import { DialogDemo } from '../dialogBoxComponents/userNameformDialog'
+import { RoomJoinDialog } from '../dialogBoxComponents/userRoomDialog'
 
 export const GameControl = () => {
     const [userControl, setUserControl] = useState<boolean>(true);
     const [stateOfBoard, setStateOfBoard] = useState<any[][]>(startboard);
     const [firstSelect, setFirstSelect] = useState<[number, number]>([-1, -1]);
     const [player, setPlayerLetter] = useState<string>("B");
-    const [opponent, setOpponent] = useState<string>("");
+    const [roomName, setRoomName] = useState<string>("");
     const [buttonSet, setbuttonSet] = useState<string[]>(remainingButton);
     const [boardFirstSelectColor, setBoardFirstSelectColor] = useState<any[][]>(initialBoardState);
     const [userName, setUserName] = useState<string>('');
@@ -30,6 +32,10 @@ export const GameControl = () => {
 
 
     const handleClick = async (position: string) => {
+        if (roomName == "") {
+            showToast("join a room ")
+            return;
+        }
         if (!userControl) {
             showToast("It is not your turn");
             return;
@@ -43,7 +49,7 @@ export const GameControl = () => {
         if (isMomentDone[0]) {
             setBoardFirstSelectColor(firstSelectBoardInitialState);
             setTimeout(async () => {
-                await updateMovementFromUs(isMomentDone[1], socket);
+                await updateMovementFromUs({ roomName: roomName, table: isMomentDone[1] }, socket);
             }, 0);
             setUserControl(false);
         }
@@ -55,10 +61,12 @@ export const GameControl = () => {
         });
         socket.on('moveDoneByOpponent', (data) => {
             setUserControl(true);
-            setStateOfBoard(JSON.parse(data));
+            console.log("move done",data)
+            console.log(JSON.parse(data.table))
+            setStateOfBoard(JSON.parse(data.table));
         })
-        socket.on("opponentWin",(data)=>{
-            showToast(`${data} is the winner`);
+        socket.on("opponentWin", (data) => {
+            showToast(`${data.player} is the winner`);
         })
 
         return () => {
@@ -86,19 +94,16 @@ export const GameControl = () => {
 
     return (
         <div>
-            <UserNameInputBox userName={userName} setUserName={setUserName} socket={socket} />
-            <CheckboxExample
+            <div className="mt-4 text-gray-600 p-2 ">
+                Your Roomname : <span className="font-semibold">{roomName}</span>
+            </div>
+            <RoomJoinDialog
+                roomName={roomName}
+                setRoomName={setRoomName}
+                userName={userName}
+                socket={socket}
                 setPlayerLetter={setPlayerLetter}
-                value="A"
-                isChecked={AisChecked}
-                setIsChecked={AsetIsChecked}
-            />
-            <CheckboxExample
-                setPlayerLetter={setPlayerLetter}
-                value="B"
-                isChecked={BisChecked}
-                setIsChecked={BsetIsChecked}
-            />
+            ></RoomJoinDialog>
             <GameBoard board={stateOfBoard}
                 userControl={userControl}
                 firstSelect={firstSelect}
@@ -107,6 +112,23 @@ export const GameControl = () => {
                 setBoardFirstSelectColor={setBoardFirstSelectColor}
                 player={player}
             ></GameBoard>
+
+            <div className='flex items-end gap-1  '>
+                <div className="mt-4 text-gray-600 p-2 ">
+                    Your username is: <span className="font-semibold">{userName}</span>
+                </div>
+                <DialogDemo
+                    userName={userName}
+                    setUserName={setUserName}
+                    socket={socket}
+                    setPlayerLetter={setPlayerLetter}
+                    setIsChecked={AsetIsChecked}
+                ></DialogDemo>
+            </div>
+
+            <div className=" text-gray-600 mt-5 ">
+                Your Moves :
+            </div>
             <div className='flex justify-between mt-4 '>
                 <Button variant="outline" className='hover:bg-blue-950 hover:text-white' onClick={() => { handleClick(buttonSet[0]) }}>{buttonSet[0]} </Button>
                 <Button variant="outline" className='hover:bg-blue-950 hover:text-white' onClick={() => { handleClick(buttonSet[1]) }}>{buttonSet[1]}</Button>

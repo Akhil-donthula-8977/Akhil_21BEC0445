@@ -3,6 +3,24 @@ import { twMerge } from "tailwind-merge"
 import { firstSelectBoardInitialState } from "@/constants/GameConstants";
 import { diagonals, oneDirection } from "@/constants/GameConstants";
 
+
+type PawnMoveDirection = "L" | "R" | "F" | "B";
+
+
+
+const pawnMoments: Record<PawnMoveDirection, number[]> = {
+  "L": [0, -1],
+  "R": [0, 1],
+  "F": [-1, 0],
+  "B": [1, 0]
+};
+
+const H2Moments = {
+  "FL": [-1, -1],
+  "FR": [-1, 1],
+  "BL": [1, -1],
+  "BR": [1, 1]
+}
 export interface MakeMoveParams {
   board: any[][];
   setStateOfBoard: Function,
@@ -145,20 +163,4 @@ export function makeMove({
 }
 
 
-type PawnMoveDirection = "L" | "R" | "F" | "B";
 
-
-
-const pawnMoments: Record<PawnMoveDirection, number[]> = {
-  "L": [0, -1],
-  "R": [0, 1],
-  "F": [-1, 0],
-  "B": [1, 0]
-};
-
-const H2Moments = {
-  "FL": [-1, -1],
-  "FR": [-1, 1],
-  "BL": [1, -1],
-  "BR": [1, 1]
-}
