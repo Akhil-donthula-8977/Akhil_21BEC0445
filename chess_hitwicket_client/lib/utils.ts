@@ -139,7 +139,6 @@ export function makeMove({
     pawnMoments=pawnMomentsB;
     H2Moments=H2MomentsB
   }
-
   const isValidMove = (newRow: number, newCol: number) => {
     return (
       newRow >= 0 &&
@@ -149,7 +148,6 @@ export function makeMove({
       (board[newRow][newCol] == null || board[newRow][newCol][0] !== player)
     );
   };
-
   const processMovements = (mov: number[], steps: number, row: number, col: number): [boolean, number, number] => {
     let isOk = true;
     let updatedIndex: [number, number] = [0, 0];
@@ -164,7 +162,6 @@ export function makeMove({
     }
     return [isOk, ...updatedIndex];
   };
-
   const updateBoard = (newRow: number, newCol: number) => {
     const newBoard = board.map(row => row.slice());
     const temp = newBoard[firstSelect[0]][firstSelect[1]];
@@ -173,8 +170,6 @@ export function makeMove({
     setStateOfBoard(newBoard);
     return JSON.stringify(newBoard);
   };
-
-
   if (containsH1(board[row][col])) {
     //@ts-ignore
     const [isValid, nr, nc] = processMovements(pawnMoments[position], 2, row, col);
@@ -197,8 +192,31 @@ export function makeMove({
       return [true,ans];
     }
   }
-
   return [false,JSON.stringify(board)];
+}
+
+export function checkWinner(board:any[][]){
+  var Acnt=0;
+  var Bcnt=0;
+  for(var i=0;i<5;i++){
+    for(var j=0;j<5;j++){
+      if(board[i][j]==null){
+        continue;
+      }
+      else if(board[i][j][0]=='A'){
+        Acnt++;
+      }
+      else if(board[i][j][0]=="B"){
+        Bcnt++;
+      }
+    }
+  }
+
+  if(Acnt==0 )return "B";
+  if(Bcnt==0)return "A";
+
+
+  return "No One"
 }
 
 

@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { startboard } from '@/constants/GameConstants'
 import { firstSelectBoardInitialState, h2buttonName, remainingButton } from '@/constants/GameConstants'
 import { useMemo } from 'react'
-import { containsH1, containsH2 } from '@/lib/utils'
+import { containsH1, containsH2,  checkWinner } from '@/lib/utils'
 import { initialBoardState } from "@/constants/GameConstants";
 import { Button } from "@/components/ui/button"
 import { connectWebSocket } from '@/utils/connectsocket'
@@ -16,6 +16,7 @@ import UserNameInputBox from '../forms/UserNameInputBox'
 import CheckboxExample from '../forms/checkBoxExample'
 import { DialogDemo } from '../dialogBoxComponents/userNameformDialog'
 import { RoomJoinDialog } from '../dialogBoxComponents/userRoomDialog'
+import { DoneToast } from '../ToastComponents/DoneToast'
 
 export const GameControl = () => {
     const [userControl, setUserControl] = useState<boolean>(true);
@@ -50,13 +51,21 @@ export const GameControl = () => {
                 await updateMovementFromUs({ roomName: roomName, table: isMomentDone[1] }, socket);
             }, 0);
             setUserControl(false);
+            const winner=checkWinner(JSON.parse(isMomentDone[1]));
+
+            if(winner=="A"){
+                socket.emit("opponentWin",({roomName:roomName,player:"A"}))
+            }
+            else if(winner=="B"){
+                socket.emit("opponentWin",({roomName:roomName,player:"B"}))
+            }
         }
+
+
     };
 
     useEffect(() => {
-        socket.on('message', (data) => {
-            console.log(data)
-        });
+       
         socket.on('moveDoneByOpponent', (data) => {
             setUserControl(true);
             console.log("move done", data)
@@ -64,7 +73,7 @@ export const GameControl = () => {
             setStateOfBoard(JSON.parse(data.table));
         })
         socket.on("opponentWin", (data) => {
-            showToast(`${data.player} is the winner`);
+            DoneToast(`${data.player} is the winner`);
         })
 
         return () => {

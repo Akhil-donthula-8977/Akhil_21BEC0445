@@ -55,7 +55,7 @@ io.on('connection', (socket) => {
 
   
   socket.on("opponentWin", (data) => {
-    socket.broadcast.to(data.roomName).emit("opponentWin", data);
+    socket.to(data.roomName).emit("opponentWin", data);
   });
 
 
