@@ -6,16 +6,41 @@ Hit Wicket task submission
 Eraser IO link for plan :[Link](https://app.eraser.io/workspace/DnYLAtrH4inRLhYyu9rp)
 <h2>Project Screenshots:</h2>
 
-![ScreenShot-1](https://github.com/user-attachments/assets/4bb42263-725f-4314-8eae-de3982695859)
 
-  ![screenShot-2](https://github.com/user-attachments/assets/32de980a-d5fd-425c-b549-02957b54e7b9)
+<h3>user name update:</h3>
 
-  ![screenshot_3](https://github.com/user-attachments/assets/24726e4c-fc40-4a47-8cc3-e778fccbbbea)
+![username_udpate](https://github.com/user-attachments/assets/899c2fa0-ddf9-43e3-acc0-1c4cff23693c)
+
+<h3>creating and join room</h3>
+
+![joining room](https://github.com/user-attachments/assets/196ea578-890e-4f4c-9538-bcf5b2b1b900)
+
+<h3> invalid turn</h3>
+
+![invalid_turn](https://github.com/user-attachments/assets/a862cbf8-e453-439d-b7ae-507c65253b6b)
+
+<h3>user shown with directions to where he can move</h3>
+
+![user_valid_directions](https://github.com/user-attachments/assets/0bc65b9c-1762-49a8-8dd4-281ce9d46eff)
+
+<h3>winner notified</h3>
+
+![winner_notified](https://github.com/user-attachments/assets/779179d9-0cd0-4053-a1fa-c1cf5724cebf)
+
+<h3>over all</h3>
+
+![overall](https://github.com/user-attachments/assets/7d508a1b-bbfc-4f35-98be-0483726bb3d3)
 
 <h2>🧐 Features</h2>
 
 Here're some of the project's best features:
+Game initialization
+Player move
+Game state update
+Invalid move notification
+Game over notification
+Clickable character pieces for the current player
+Display valid moves as buttons when a character is selected below the grid.
+Send move commands to the server when a valid move is chosen
 
-*   A two player feature
-*   All notification and alert features
-*   simple and best code practices
+
