@@ -4,15 +4,7 @@ import { Button } from '../ui/button';
 import { Socket } from 'socket.io-client';
 import { joinRoom, registerUser } from '@/lib/actions';
 import { showToast } from '../ToastComponents/AlertUserControlToast';
-interface RoomJoinInputBoxProps {
-    roomName: string;
-    userName:string;
-    setRoomName: Function;
-  socket: Socket;
-  udpatedSucessfully:Function,
-  setPlayerLetter:Function
-}
-
+import { RoomJoinInputBoxProps } from '@/index';
 const RoomJoinInputBox: React.FC<RoomJoinInputBoxProps> = ({ setPlayerLetter,roomName,userName,setRoomName, socket,udpatedSucessfully }) => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,9 +27,7 @@ const RoomJoinInputBox: React.FC<RoomJoinInputBoxProps> = ({ setPlayerLetter,roo
       setRoomName(roomName)
     }
 
-    // if(udpatedSucessfully!=null){
-    //   udpatedSucessfully();
-    // }
+ 
     
   };
 
@@ -46,7 +36,7 @@ const RoomJoinInputBox: React.FC<RoomJoinInputBoxProps> = ({ setPlayerLetter,roo
       <label
         htmlFor="Room"
         className="block text-gray-700 text-sm font-bold mb-2">
-        Username
+        Room name
       </label>
       <input
         id="username"
@@ -57,7 +47,7 @@ const RoomJoinInputBox: React.FC<RoomJoinInputBoxProps> = ({ setPlayerLetter,roo
         placeholder="Enter your room anme"
       />
     
-      <Button onClick={handleClick} className='bg-blue-600 hover:bg-blue-900 text-white rounded-xl m-2'>Join</Button>
+      <Button onClick={handleClick} className='bg-blue-600 hover:bg-blue-900 text-white rounded-xl mt-2'>Join room</Button>
     </div>
   );
 };

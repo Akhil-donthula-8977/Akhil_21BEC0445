@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { startboard } from '@/constants/GameConstants'
 import { firstSelectBoardInitialState, h2buttonName, remainingButton } from '@/constants/GameConstants'
 import { useMemo } from 'react'
-import { containsH1, containsH2,  checkWinner } from '@/lib/utils'
+import { containsH1, containsH2, checkWinner } from '@/lib/utils'
 import { initialBoardState } from "@/constants/GameConstants";
 import { Button } from "@/components/ui/button"
 import { connectWebSocket } from '@/utils/connectsocket'
@@ -51,13 +51,13 @@ export const GameControl = () => {
                 await updateMovementFromUs({ roomName: roomName, table: isMomentDone[1] }, socket);
             }, 0);
             setUserControl(false);
-            const winner=checkWinner(JSON.parse(isMomentDone[1]));
+            const winner = checkWinner(JSON.parse(isMomentDone[1]));
 
-            if(winner=="A"){
-                socket.emit("opponentWin",({roomName:roomName,player:"A"}))
+            if (winner == "A") {
+                socket.emit("opponentWin", ({ roomName: roomName, player: "A" }))
             }
-            else if(winner=="B"){
-                socket.emit("opponentWin",({roomName:roomName,player:"B"}))
+            else if (winner == "B") {
+                socket.emit("opponentWin", ({ roomName: roomName, player: "B" }))
             }
         }
 
@@ -65,12 +65,10 @@ export const GameControl = () => {
     };
 
     useEffect(() => {
-       
+
         socket.on('moveDoneByOpponent', (data) => {
             DoneToast("it is your turn")
             setUserControl(true);
-            console.log("move done", data)
-            console.log(JSON.parse(data.table))
             setStateOfBoard(JSON.parse(data.table));
         })
         socket.on("opponentWin", (data) => {
@@ -78,7 +76,6 @@ export const GameControl = () => {
         })
 
         return () => {
-            console.log("hello")
             socket.off('message');
         };
 
@@ -102,7 +99,8 @@ export const GameControl = () => {
 
     return (
         <div>
-            <div className="mt-4 text-gray-600 p-2 ">
+            <div className="mt-4 
+            text-gray-600 p-2 ">
                 Your Roomname : <span className="font-semibold">{roomName}</span>
             </div>
             <RoomJoinDialog
@@ -138,6 +136,7 @@ export const GameControl = () => {
                 Your Moves :
             </div>
             <div className='flex justify-between mt-4 '>
+               
                 <Button variant="outline" className='hover:bg-blue-950 hover:text-white' onClick={() => { handleClick(buttonSet[0]) }}>{buttonSet[0]} </Button>
                 <Button variant="outline" className='hover:bg-blue-950 hover:text-white' onClick={() => { handleClick(buttonSet[1]) }}>{buttonSet[1]}</Button>
                 <Button variant="outline" className='hover:bg-blue-950 hover:text-white' onClick={() => { handleClick(buttonSet[2]) }}>{buttonSet[2]}</Button>

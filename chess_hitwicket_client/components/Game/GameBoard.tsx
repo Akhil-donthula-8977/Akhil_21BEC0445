@@ -4,16 +4,7 @@ import { toast } from 'react-hot-toast';
 import { showToast } from "../ToastComponents/AlertUserControlToast";
 import { rows, cols } from "@/constants/GameConstants";
 import { showAllowablePositionsColor } from "@/lib/utils";
-
-interface boardType {
-    board: string[][],
-    userControl: boolean,
-    firstSelect: [number, number],
-    boardFirstSelectColor: boolean[][],
-    setBoardFirstSelectColor: Function,
-    setFirstSelect: Function,
-    player: string
-}
+import { boardType } from "@/index";
 
 export const GameBoard = ({
     board,
@@ -58,16 +49,16 @@ export const GameBoard = ({
     }, [firstSelect, userControl]);
 
     return (
-        <div className="flex justify-center items-center  bg-gray-100 p-4">
+        <div className="flex justify-center items-center  bg-orange-400 p-4 border-[1px] border-orange-700">
             <div className="flex flex-col gap-2">
                 {board.map((row, rowIndex) => (
                     <div key={rowIndex} className="flex gap-2">
                         {row.map((cell, colIndex) => (
                             <div
                                 key={colIndex}
-                                className={`${boardFirstSelectColor[rowIndex][colIndex] ? "bg-green-400" : "bg-slate-500"} 
+                                className={`${boardFirstSelectColor[rowIndex][colIndex] ? "bg-yellow-500 border-[4px] border-orange-900" : "bg-orange-950"} 
                                         p-4 m-1 rounded-md text-lg cursor-pointer text-white flex items-center justify-center 
-                                        hover:bg-slate-700 shadow-md transition-all duration-200 ease-in-out`}
+                                        hover:bg-orange-700 shadow-md transition-all duration-200 ease-in-out`}
                                 style={{ width: "60px", height: "60px" }}
                                 onClick={() => handleClick(rowIndex, colIndex)}>
                                 {cell}

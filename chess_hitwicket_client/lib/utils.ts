@@ -2,12 +2,7 @@ import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
 import { firstSelectBoardInitialState } from "@/constants/GameConstants";
 import { diagonals, oneDirection } from "@/constants/GameConstants";
-
-
 type PawnMoveDirection = "L" | "R" | "F" | "B";
-
-
-
 var pawnMoments: Record<PawnMoveDirection, number[]> = {
   "L": [0, -1],
   "R": [0, 1],
@@ -62,11 +57,6 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-
-export function boardToStringSerializer() {
-
-}
-
 export function containsH1(value: string | null): boolean {
   return value !== null && value.includes("h1");
 }
@@ -97,7 +87,6 @@ export function showAllowablePositionsColor(
       (board[newRow][newCol] == null || board[newRow][newCol][0] != player)
     );
   };
-
   const processMovements = (movements: number[][], steps: number) => {
     for (const mov of movements) {
       for (let i = 0; i < steps; i++) {
@@ -109,16 +98,12 @@ export function showAllowablePositionsColor(
       }
     }
   };
-  if (containsH2(board[row][col])) {
-    processMovements(diagonals, 2);
-  } else if (containsP(board[row][col])) {
-    processMovements(oneDirection, 1);
-  }
-  else if (containsH1(board[row][col])) {
-    processMovements(oneDirection, 2);
-  }
+  if (containsH2(board[row][col])) processMovements(diagonals, 2);
+  else if (containsP(board[row][col])) processMovements(oneDirection, 1);
+  else if (containsH1(board[row][col]))  processMovements(oneDirection, 2);
   setBoardFirstSelectColor([...temp]);
 }
+
 
 export function makeMove({
   board,
@@ -195,6 +180,8 @@ export function makeMove({
   return [false,JSON.stringify(board)];
 }
 
+
+
 export function checkWinner(board:any[][]){
   var Acnt=0;
   var Bcnt=0;
@@ -211,11 +198,8 @@ export function checkWinner(board:any[][]){
       }
     }
   }
-
   if(Acnt==0 )return "B";
   if(Bcnt==0)return "A";
-
-
   return "No One"
 }
 

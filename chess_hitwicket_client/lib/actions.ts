@@ -1,6 +1,5 @@
 import { Socket } from "socket.io-client";
 export async function updateMovementFromUs(data: Object, socket: Socket) {
-  
     socket.emit("updatedMove", data);
   }
   export async function registerUser(data:string,socket:Socket){

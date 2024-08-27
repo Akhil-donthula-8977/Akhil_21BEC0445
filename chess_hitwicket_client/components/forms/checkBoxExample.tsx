@@ -1,14 +1,6 @@
 import React from 'react';
-
-interface CheckboxExampleProps {
-  value: string;
-  setPlayerLetter:Function
-  isChecked: boolean;
-  setIsChecked: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
+import { CheckboxExampleProps } from '@/index';
 const CheckboxExample: React.FC<CheckboxExampleProps> = ({ value, isChecked, setIsChecked,setPlayerLetter }) => {
-  
   const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setIsChecked(event.target.checked);
     if(event.target.checked){
@@ -16,7 +8,6 @@ const CheckboxExample: React.FC<CheckboxExampleProps> = ({ value, isChecked, set
         setPlayerLetter(value)
     }
   };
-
   return (
     <div className="w-full max-w-sm mx-auto mt-10">
       <label htmlFor="checkbox" className="flex items-center space-x-3">
