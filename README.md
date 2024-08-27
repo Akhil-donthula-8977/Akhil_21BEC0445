@@ -34,13 +34,13 @@ Eraser IO link for plan :[Link](https://app.eraser.io/workspace/DnYLAtrH4inRLhYy
 <h2>🧐 Features</h2>
 
 Here're some of the project's best features:
-Game initialization
-Player move
-Game state update
-Invalid move notification
-Game over notification
-Clickable character pieces for the current player
-Display valid moves as buttons when a character is selected below the grid.
-Send move commands to the server when a valid move is chosen
+* Game initialization
+* Player move
+* Game state update
+* Invalid move notification
+* Game over notification
+* Clickable character pieces for the current player
+* Display valid moves as buttons when a character is selected below the grid.
+* Send move commands to the server when a valid move is chosen
 
 
