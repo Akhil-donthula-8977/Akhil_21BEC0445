@@ -67,6 +67,7 @@ export const GameControl = () => {
     useEffect(() => {
        
         socket.on('moveDoneByOpponent', (data) => {
+            DoneToast("it is your turn")
             setUserControl(true);
             console.log("move done", data)
             console.log(JSON.parse(data.table))
