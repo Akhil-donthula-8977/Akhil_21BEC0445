@@ -26,8 +26,6 @@ export const GameControl = () => {
     const [buttonSet, setbuttonSet] = useState<string[]>(remainingButton);
     const [boardFirstSelectColor, setBoardFirstSelectColor] = useState<any[][]>(initialBoardState);
     const [userName, setUserName] = useState<string>('');
-    const [BisChecked, BsetIsChecked] = useState<boolean>(false);
-    const [AisChecked, AsetIsChecked] = useState<boolean>(false);
     const socket = useMemo(() => { return connectWebSocket("") }, [])
 
 
@@ -61,7 +59,7 @@ export const GameControl = () => {
         });
         socket.on('moveDoneByOpponent', (data) => {
             setUserControl(true);
-            console.log("move done",data)
+            console.log("move done", data)
             console.log(JSON.parse(data.table))
             setStateOfBoard(JSON.parse(data.table));
         })
@@ -122,7 +120,7 @@ export const GameControl = () => {
                     setUserName={setUserName}
                     socket={socket}
                     setPlayerLetter={setPlayerLetter}
-                    setIsChecked={AsetIsChecked}
+
                 ></DialogDemo>
             </div>
 

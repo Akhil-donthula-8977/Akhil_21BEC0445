@@ -8,18 +8,46 @@ type PawnMoveDirection = "L" | "R" | "F" | "B";
 
 
 
-const pawnMoments: Record<PawnMoveDirection, number[]> = {
+var pawnMoments: Record<PawnMoveDirection, number[]> = {
   "L": [0, -1],
   "R": [0, 1],
   "F": [-1, 0],
   "B": [1, 0]
 };
+//B
+const pawnMomentsB: Record<PawnMoveDirection, number[]> = {
+  "L": [0, -1],
+  "R": [0, 1],
+  "F": [-1, 0],
+  "B": [1, 0]
+};
+//A
+const pawnMomentsA: Record<PawnMoveDirection, number[]> = {
+  "R": [0, -1],
+  "L": [0, 1],
+  "B": [-1, 0],
+  "F": [1, 0]
+};
 
-const H2Moments = {
+var H2Moments = {
   "FL": [-1, -1],
   "FR": [-1, 1],
   "BL": [1, -1],
   "BR": [1, 1]
+}
+//B
+const H2MomentsB = {
+  "FL": [-1, -1],
+  "FR": [-1, 1],
+  "BL": [1, -1],
+  "BR": [1, 1]
+}
+//A
+const H2MomentsA = {
+  "BR": [-1, -1],
+  "BL": [-1, 1],
+  "FR": [1, -1],
+  "FL": [1, 1]
 }
 export interface MakeMoveParams {
   board: any[][];
@@ -58,6 +86,7 @@ export function showAllowablePositionsColor(
   col: number,
   player: string
 ) {
+ 
   const temp = firstSelectBoardInitialState.map((row) => [...row]);
   const isValidMove = (newRow: number, newCol: number) => {
     return (
@@ -102,6 +131,15 @@ export function makeMove({
   const row = firstSelect[0];
   const col = firstSelect[1];
 
+  if(player=="A"){
+    pawnMoments=pawnMomentsA;
+    H2Moments=H2MomentsA
+  }
+  else if(player="B"){
+    pawnMoments=pawnMomentsB;
+    H2Moments=H2MomentsB
+  }
+
   const isValidMove = (newRow: number, newCol: number) => {
     return (
       newRow >= 0 &&
@@ -135,6 +173,7 @@ export function makeMove({
     setStateOfBoard(newBoard);
     return JSON.stringify(newBoard);
   };
+
 
   if (containsH1(board[row][col])) {
     //@ts-ignore

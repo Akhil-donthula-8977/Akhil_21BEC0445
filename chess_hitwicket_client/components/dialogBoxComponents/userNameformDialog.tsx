@@ -17,11 +17,11 @@ interface DialogProps {
     userName: string,
     setUserName: Function,
     socket: Socket,
-    setIsChecked: Function,
+  
     setPlayerLetter: Function
 
 }
-export function DialogDemo({ userName, setUserName, socket, setPlayerLetter, setIsChecked }: DialogProps) {
+export function DialogDemo({ userName, setUserName, socket, setPlayerLetter,  }: DialogProps) {
     const handleClick=()=>{
         DoneToast("updated successfully")
     }

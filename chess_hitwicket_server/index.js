@@ -25,7 +25,7 @@ const roomDb = new UserRoomDb();
 io.on('connection', (socket) => {
   console.log('New client connected');
 
-  // Registering a user with their socket ID
+  
   socket.on('registerUser', (userId) => {
     db.addUserSocket(userId, socket.id);
     console.log(`User ${userId} connected with socket ID ${socket.id}`);
