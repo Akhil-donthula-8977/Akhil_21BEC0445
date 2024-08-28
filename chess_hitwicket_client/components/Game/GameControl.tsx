@@ -17,7 +17,8 @@ import CheckboxExample from '../forms/checkBoxExample'
 import { DialogDemo } from '../dialogBoxComponents/userNameformDialog'
 import { RoomJoinDialog } from '../dialogBoxComponents/userRoomDialog'
 import { DoneToast } from '../ToastComponents/DoneToast'
-
+import LeaveRoombutton from '../Buttons/LeaveRoombutton'
+import HistoryBox from './HistoryBox'
 export const GameControl = () => {
     const [userControl, setUserControl] = useState<boolean>(true);
     const [stateOfBoard, setStateOfBoard] = useState<any[][]>(startboard);
@@ -28,8 +29,7 @@ export const GameControl = () => {
     const [boardFirstSelectColor, setBoardFirstSelectColor] = useState<any[][]>(initialBoardState);
     const [userName, setUserName] = useState<string>('');
     const socket = useMemo(() => { return connectWebSocket("") }, [])
-    const [userMoves,setUserMoves]=useState<string[]>([]);
-
+    const [userMoves, setUserMoves] = useState<string[]>([""]);
     const handleClick = async (position: string) => {
         if (roomName == "") {
             showToast("join a room ")
@@ -43,12 +43,16 @@ export const GameControl = () => {
             showToast(userControl ? "Select a piece to move" : "It is not your turn");
             return;
         }
+        var r = firstSelect[0];
+        var c = firstSelect[1];
         // @ts-ignore
         const isMomentDone: [boolean, string] = makeMove({ board: [...stateOfBoard], setStateOfBoard, firstSelect, player, buttonSet, position });
         if (isMomentDone[0]) {
+            var str=stateOfBoard[r][c] + " - " + position + " - " + player
+            setUserMoves((prev) => [...prev, stateOfBoard[r][c] + " - " + position + " - " + player])
             setBoardFirstSelectColor(firstSelectBoardInitialState);
             setTimeout(async () => {
-                await updateMovementFromUs({ roomName: roomName, table: isMomentDone[1] }, socket);
+                await updateMovementFromUs({ roomName: roomName, table: isMomentDone[1], changed: str }, socket);
             }, 0);
             setUserControl(false);
 
@@ -61,7 +65,6 @@ export const GameControl = () => {
             }
         }
 
-
     };
 
     useEffect(() => {
@@ -69,18 +72,25 @@ export const GameControl = () => {
         socket.on('moveDoneByOpponent', (data) => {
             DoneToast("it is your turn")
             setUserControl(true);
-            setStateOfBoard(JSON.parse(data.table));
+            setUserMoves((prev) => [...prev, JSON.parse(data).changed]);
+            setStateOfBoard(JSON.parse(JSON.parse(data).table));
         })
         socket.on("opponentWin", (data) => {
             DoneToast(`${data.player} is the winner`);
         })
-        socket.on("game start message",()=>{
-            //and your side of ${player}
+        socket.on("game start message", () => {
             DoneToast(`You can Start the Game `);
         })
 
-        socket.on("useropponent left the room",()=>{
+        socket.on("useropponent left the room", () => {
             showToast("opponent left the game!")
+        })
+
+        socket.on("left room", (data) => {
+            if (data) {
+                showToast(data)
+            }
+            else showToast("");
         })
 
 
@@ -96,7 +106,7 @@ export const GameControl = () => {
 
         if (userControl) {
             if (firstSelect[0] != -1 && firstSelect[1] != -1) {
-                console.log(stateOfBoard[firstSelect[0]][firstSelect[1]])
+              
                 if (containsH2(stateOfBoard[firstSelect[0]][firstSelect[1]])) {
                     setbuttonSet(h2buttonName);
                 }
@@ -110,19 +120,27 @@ export const GameControl = () => {
     return (
         <div>
             {
-                roomName.length>0 &&
-            <div className="mt-4 
+                roomName.length > 0 &&
+                <div className="mt-4 
             text-gray-600 p-2 border-2 mb-2 rounded-xl ">
-                Your Roomname : <span className="font-semibold">{roomName}</span>
-            </div>
+                    Your Roomname : <span className="font-semibold">{roomName}</span>
+                </div>
             }
-            <RoomJoinDialog
-                roomName={roomName}
-                setRoomName={setRoomName}
-                userName={userName}
-                socket={socket}
-                setPlayerLetter={setPlayerLetter}
-            ></RoomJoinDialog>
+
+            <div className='flex gap-2 justify-between'>
+                <RoomJoinDialog
+                    roomName={roomName}
+                    setRoomName={setRoomName}
+                    userName={userName}
+                    socket={socket}
+                    setPlayerLetter={setPlayerLetter}
+                ></RoomJoinDialog>
+                {
+                    roomName.length > 0 &&
+                    <LeaveRoombutton player={userName} socket={socket} room={roomName} setRoomName={setRoomName} ></LeaveRoombutton>
+                }
+
+            </div>
             <GameBoard board={stateOfBoard}
                 userControl={userControl}
                 firstSelect={firstSelect}
@@ -132,7 +150,7 @@ export const GameControl = () => {
                 player={player}
             ></GameBoard>
 
-            <div className='flex items-end gap-1 '>
+            <div className='flex items-center justify-between  '>
                 <div className="mt-4 text-gray-600 p-2  ">
                     Your username is: <span className="font-semibold">{userName}</span>
                 </div>
@@ -143,13 +161,14 @@ export const GameControl = () => {
                     setPlayerLetter={setPlayerLetter}
 
                 ></DialogDemo>
+                <HistoryBox moves={userMoves}></HistoryBox>
             </div>
 
             <div className=" text-gray-600 mt-5 ">
                 Your Moves :
             </div>
             <div className='flex justify-between mt-4 '>
-               
+
                 <Button variant="outline" className='hover:bg-orange-950 hover:text-white rounded-[5px] p-7 shadow-md shadow-orange-600  bg-orange-800 text-white' onClick={() => { handleClick(buttonSet[0]) }}>{buttonSet[0]} </Button>
                 <Button variant="outline" className='hover:bg-orange-950 hover:text-white rounded-[5px] p-7 shadow-md shadow-orange-600  bg-orange-800 text-white' onClick={() => { handleClick(buttonSet[1]) }}>{buttonSet[1]}</Button>
                 <Button variant="outline" className='hover:bg-orange-950 hover:text-white rounded-[5px] p-7 shadow-md shadow-orange-600  bg-orange-800 text-white' onClick={() => { handleClick(buttonSet[2]) }}>{buttonSet[2]}</Button>

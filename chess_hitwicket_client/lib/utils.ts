@@ -166,14 +166,18 @@ export function makeMove({
       var ans=updateBoard(nr, nc);
       return [true,ans];
     }
-  } else if (containsH2(board[row][col])) {
+  } 
+  
+  else if (containsH2(board[row][col])) {
      //@ts-ignore
     const [isValid, nr, nc] = processMovements(H2Moments[position], 2, row, col);
     if (isValid ) {
       var ans=updateBoard(nr, nc);
       return [true,ans];
     }
-  } else if (containsP(board[row][col])) {
+  } 
+  
+  else if (containsP(board[row][col])) {
      //@ts-ignore
     const [isValid, nr, nc] = processMovements(pawnMoments[position], 1, row, col);
     if (isValid) {

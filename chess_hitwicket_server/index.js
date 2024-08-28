@@ -48,7 +48,12 @@ io.on('connection', (socket) => {
     }
   });
 
-
+  socket.on("leaveRoom", (data) => {
+    socket.leave(data.room);
+    socket.to(data.room).emit("left room", `player ${data.player} left the game`)
+    roomDb.removeUserFromRoom(db.getUserId(socket.id), data.room)
+    console.log(data);
+  })
   socket.on('message', (data) => {
     console.log('Message received:', data);
     socket.to(data.roomName).emit('message', data);
@@ -62,14 +67,14 @@ io.on('connection', (socket) => {
 
   socket.on("updatedMove", (data) => {
     console.log(`Move in room ${data.roomName} by ${data.userName}`);
-    socket.broadcast.to(data.roomName).emit("moveDoneByOpponent", data);
+    socket.broadcast.to(data.roomName).emit("moveDoneByOpponent", JSON.stringify(data));
   });
 
 
   socket.on('disconnect', () => {
     const removeUserName = db.getUserId(socket.id);
     const removeUserFromRoom = roomDb.getRoomByUserId(removeUserName);
-    console.log(removeUserFromRoom,"-",removeUserName )
+    console.log(removeUserFromRoom, "-", removeUserName)
     if (removeUserFromRoom) {
       socket.to(removeUserFromRoom).emit("useropponent left the room")
       roomDb.removeUserFromRoom(removeUserFromRoom);

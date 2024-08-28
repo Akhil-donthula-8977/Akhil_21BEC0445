@@ -1,4 +1,4 @@
-// userRoomDb.js
+
 class UserRoomDb {
     #userRoomMap = new Map();
 
@@ -45,7 +45,7 @@ class UserRoomDb {
                 return roomId;
             }
         }
-        return null; // Return null if the user is not found in any room
+        return null;
     }
 }
 
