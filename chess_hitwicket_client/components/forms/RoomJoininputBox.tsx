@@ -14,10 +14,13 @@ const RoomJoinInputBox: React.FC<RoomJoinInputBoxProps> = ({ setPlayerLetter,roo
   const handleClick = async () => {
     if(userName==""){
         showToast("first enter user name")
+        setRoomName("");
         return;
     }
     if(roomName.length==0){
         showToast("enter valid roomName")
+        setRoomName("");
+        return;
     }
     
     if (roomName) {

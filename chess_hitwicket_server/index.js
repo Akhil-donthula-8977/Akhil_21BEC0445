@@ -19,13 +19,13 @@ app.use(cors({
   origin: "http://localhost:3000",
 }));
 
-const db = new Db(); 
-const roomDb = new UserRoomDb(); 
+const db = new Db();
+const roomDb = new UserRoomDb();
 
 io.on('connection', (socket) => {
   console.log('New client connected');
 
-  
+
   socket.on('registerUser', (userId) => {
     db.addUserSocket(userId, socket.id);
     console.log(`User ${userId} connected with socket ID ${socket.id}`);
@@ -34,26 +34,27 @@ io.on('connection', (socket) => {
 
   socket.on("joinroom", (data, acknowledgment) => {
     if (roomDb.addUserToRoom(data.userName, data.roomName)) {
-      socket.join(data.roomName); 
+      socket.join(data.roomName);
       console.log(`User ${data.userName} joined room ${data.roomName}`);
 
       if (roomDb.getUsersInRoom(data.roomName).length === 1) {
         acknowledgment('User added successfully as the first member 1');
       } else {
         acknowledgment('User added successfully as the second member 2');
+        io.to(data.roomName).emit("game start message");
       }
     } else {
       acknowledgment('Room is full');
     }
   });
 
-  
+
   socket.on('message', (data) => {
     console.log('Message received:', data);
-    socket.to(data.roomName).emit('message', data); 
+    socket.to(data.roomName).emit('message', data);
   });
 
-  
+
   socket.on("opponentWin", (data) => {
     socket.to(data.roomName).emit("opponentWin", data);
   });
@@ -66,9 +67,16 @@ io.on('connection', (socket) => {
 
 
   socket.on('disconnect', () => {
-    db.removeUserSocket(socket.id);
+    const removeUserName = db.getUserId(socket.id);
+    const removeUserFromRoom = roomDb.getRoomByUserId(removeUserName);
+    console.log(removeUserFromRoom,"-",removeUserName )
+    if (removeUserFromRoom) {
+      socket.to(removeUserFromRoom).emit("useropponent left the room")
+      roomDb.removeUserFromRoom(removeUserFromRoom);
+      db.removeUserSocket(socket.id);
+    }
     console.log('Client disconnected');
-  
+
   });
 });
 

@@ -27,7 +27,7 @@ export function RoomJoinDialog({ roomName, userName, setRoomName, socket, setPla
         <Dialog>
         <DialogTrigger asChild>
             <button
-                className="mb-2 border-gray-400 bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 p-2 rounded-lg shadow-lg transition duration-200 ease-in-out"
+                className="mb-2 border-gray-400 bg-orange-900 text-white hover:bg-orange-800 focus:outline-none focus:ring-2 focus:ring-orange-500 p-1 rounded-[10px]  px-2  shadow-lg transition duration-200 ease-in-out"
             >
                 Join Room
             </button>

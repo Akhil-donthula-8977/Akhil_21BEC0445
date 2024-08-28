@@ -1,17 +1,20 @@
- class Db {
+class Db {
     #userSocketArray = [];
 
-    constructor() {
-    
-    }
+    constructor() {}
 
     addUserSocket(userId, socketId) {
         const userSocket = this.#userSocketArray.find(us => us.userId === userId);
         if (userSocket) {
             userSocket.socketId = socketId;
         } else {
-            this.#userSocketArray.push({ userId, socketId }); 
+            this.#userSocketArray.push({ userId, socketId });
         }
+    }
+
+    getUserId(socketId) {
+        const userSocket = this.#userSocketArray.find(us => us.socketId === socketId);
+        return userSocket ? userSocket.userId : undefined;
     }
 
     getSocketId(userId) {
@@ -24,4 +27,4 @@
     }
 }
 
-module.exports=Db
+module.exports = Db;

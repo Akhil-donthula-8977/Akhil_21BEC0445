@@ -28,7 +28,7 @@ export const GameControl = () => {
     const [boardFirstSelectColor, setBoardFirstSelectColor] = useState<any[][]>(initialBoardState);
     const [userName, setUserName] = useState<string>('');
     const socket = useMemo(() => { return connectWebSocket("") }, [])
-
+    const [userMoves,setUserMoves]=useState<string[]>([]);
 
     const handleClick = async (position: string) => {
         if (roomName == "") {
@@ -51,8 +51,8 @@ export const GameControl = () => {
                 await updateMovementFromUs({ roomName: roomName, table: isMomentDone[1] }, socket);
             }, 0);
             setUserControl(false);
-            const winner = checkWinner(JSON.parse(isMomentDone[1]));
 
+            const winner = checkWinner(JSON.parse(isMomentDone[1]));
             if (winner == "A") {
                 socket.emit("opponentWin", ({ roomName: roomName, player: "A" }))
             }
@@ -74,6 +74,16 @@ export const GameControl = () => {
         socket.on("opponentWin", (data) => {
             DoneToast(`${data.player} is the winner`);
         })
+        socket.on("game start message",()=>{
+            //and your side of ${player}
+            DoneToast(`You can Start the Game `);
+        })
+
+        socket.on("useropponent left the room",()=>{
+            showToast("opponent left the game!")
+        })
+
+
 
         return () => {
             socket.off('message');
@@ -99,10 +109,13 @@ export const GameControl = () => {
 
     return (
         <div>
+            {
+                roomName.length>0 &&
             <div className="mt-4 
-            text-gray-600 p-2 ">
+            text-gray-600 p-2 border-2 mb-2 rounded-xl ">
                 Your Roomname : <span className="font-semibold">{roomName}</span>
             </div>
+            }
             <RoomJoinDialog
                 roomName={roomName}
                 setRoomName={setRoomName}
@@ -119,8 +132,8 @@ export const GameControl = () => {
                 player={player}
             ></GameBoard>
 
-            <div className='flex items-end gap-1  '>
-                <div className="mt-4 text-gray-600 p-2 ">
+            <div className='flex items-end gap-1 '>
+                <div className="mt-4 text-gray-600 p-2  ">
                     Your username is: <span className="font-semibold">{userName}</span>
                 </div>
                 <DialogDemo
@@ -137,10 +150,10 @@ export const GameControl = () => {
             </div>
             <div className='flex justify-between mt-4 '>
                
-                <Button variant="outline" className='hover:bg-blue-950 hover:text-white' onClick={() => { handleClick(buttonSet[0]) }}>{buttonSet[0]} </Button>
-                <Button variant="outline" className='hover:bg-blue-950 hover:text-white' onClick={() => { handleClick(buttonSet[1]) }}>{buttonSet[1]}</Button>
-                <Button variant="outline" className='hover:bg-blue-950 hover:text-white' onClick={() => { handleClick(buttonSet[2]) }}>{buttonSet[2]}</Button>
-                <Button variant="outline" className='hover:bg-blue-950 hover:text-white' onClick={() => { handleClick(buttonSet[3]) }}>{buttonSet[3]}</Button>
+                <Button variant="outline" className='hover:bg-orange-950 hover:text-white rounded-[5px] p-7 shadow-md shadow-orange-600  bg-orange-800 text-white' onClick={() => { handleClick(buttonSet[0]) }}>{buttonSet[0]} </Button>
+                <Button variant="outline" className='hover:bg-orange-950 hover:text-white rounded-[5px] p-7 shadow-md shadow-orange-600  bg-orange-800 text-white' onClick={() => { handleClick(buttonSet[1]) }}>{buttonSet[1]}</Button>
+                <Button variant="outline" className='hover:bg-orange-950 hover:text-white rounded-[5px] p-7 shadow-md shadow-orange-600  bg-orange-800 text-white' onClick={() => { handleClick(buttonSet[2]) }}>{buttonSet[2]}</Button>
+                <Button variant="outline" className='hover:bg-orange-950  hover:text-white rounded-[5px] p-7 shadow-md shadow-orange-600  bg-orange-800 text-white' onClick={() => { handleClick(buttonSet[3]) }}>{buttonSet[3]}</Button>
             </div>
         </div>
     )

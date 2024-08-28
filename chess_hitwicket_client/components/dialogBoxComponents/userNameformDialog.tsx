@@ -22,7 +22,7 @@ export function DialogDemo({ userName, setUserName, socket, setPlayerLetter,  }:
         <Dialog>
         <DialogTrigger asChild>
             <button
-                className="p-2 rounded-full bg-blue-500 text-white hover:bg-blue-600 transition-colors duration-200 ease-in-out"
+                className="p-1 rounded-full  text-black hover:bg-orange-600 transition-colors duration-200 ease-in-out"
             >
                 <CiEdit size={24} />
             </button>

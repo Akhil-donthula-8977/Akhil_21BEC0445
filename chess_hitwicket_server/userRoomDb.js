@@ -2,9 +2,7 @@
 class UserRoomDb {
     #userRoomMap = new Map();
 
-    constructor() {
-        // Initialization if needed
-    }
+    constructor() {}
 
     addUserToRoom(userId, roomId) {
         if (!this.#userRoomMap.has(roomId)) {
@@ -15,9 +13,9 @@ class UserRoomDb {
 
         if (usersInRoom.length < 2) {
             this.#userRoomMap.get(roomId).push(userId);
-            return true; // User added successfully
+            return true;
         } else {
-            return false; // Room is full, cannot add user
+            return false;
         }
     }
 
@@ -27,7 +25,6 @@ class UserRoomDb {
                 roomId,
                 this.#userRoomMap.get(roomId).filter(id => id !== userId)
             );
-            // Remove the room entry if empty
             if (this.#userRoomMap.get(roomId).length === 0) {
                 this.#userRoomMap.delete(roomId);
             }
@@ -40,6 +37,15 @@ class UserRoomDb {
 
     doesRoomExist(roomId) {
         return this.#userRoomMap.has(roomId);
+    }
+
+    getRoomByUserId(userId) {
+        for (let [roomId, users] of this.#userRoomMap.entries()) {
+            if (users.includes(userId)) {
+                return roomId;
+            }
+        }
+        return null; // Return null if the user is not found in any room
     }
 }
 

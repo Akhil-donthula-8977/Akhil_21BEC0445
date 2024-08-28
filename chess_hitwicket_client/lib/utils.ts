@@ -105,6 +105,10 @@ export function showAllowablePositionsColor(
 }
 
 
+
+
+
+
 export function makeMove({
   board,
   setStateOfBoard,
