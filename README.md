@@ -6,35 +6,38 @@ Hit Wicket task submission
 Eraser IO link for plan :[Link](https://app.eraser.io/workspace/DnYLAtrH4inRLhYyu9rp)
 <h2>Project Screenshots:</h2>
 
+<h3> FULL BOARD:</h3>
 
-<h3>user name update:</h3>
+![Full board](https://github.com/user-attachments/assets/56b0a84a-5deb-416e-954c-8759c2a0210e)
 
-![username_udpate](https://github.com/user-attachments/assets/899c2fa0-ddf9-43e3-acc0-1c4cff23693c)
+<h3> SUER NAME FEATURE:  </H3>
 
-<h3>creating and join room</h3>
+![userName](https://github.com/user-attachments/assets/687de7f1-3d01-45c5-ab3f-a39be44ea01c)
 
-![joining room](https://github.com/user-attachments/assets/196ea578-890e-4f4c-9538-bcf5b2b1b900)
+<h3> ROM FULL NOTIFY AND GAmE READY : </h3>
 
-<h3> invalid turn</h3>
+![room full notification](https://github.com/user-attachments/assets/f05bef4b-12d2-4b91-bf86-4e998acf13af)
 
-![invalid_turn](https://github.com/user-attachments/assets/a862cbf8-e453-439d-b7ae-507c65253b6b)
+<h3> WORONG PLAYER PICK NOTIFY TOAST:  </h3>
 
-<h3>user turn shown:</h3>
+![wrong token notification](https://github.com/user-attachments/assets/52f10197-bf99-4dd7-9f3f-8576fb5c1f49)
 
-![Turn Updation](https://github.com/user-attachments/assets/9b9af156-b645-4ed8-a462-3262d7433bdf)
+<h4>TURN NOTIFICATION AND USER HISTORY UPDATE TO BOTH USERS</h4>
 
+![turn notify and history](https://github.com/user-attachments/assets/280c3e44-859f-4547-9e34-a6e644642bc4)
 
-<h3>user shown with directions to where he can move</h3>
+<h3>SHOW ALLOABLE TILES</h3>
 
-![user_valid_directions](https://github.com/user-attachments/assets/0bc65b9c-1762-49a8-8dd4-281ce9d46eff)
+![showing alloable tiles to move](https://github.com/user-attachments/assets/64f2455e-71de-4e8c-82c1-20ddfd54a27a)
 
-<h3>winner notified</h3>
+<h3> WINNEr NOTIFY </h3>
 
-![winner_notified](https://github.com/user-attachments/assets/779179d9-0cd0-4053-a1fa-c1cf5724cebf)
+![winner notifiy](https://github.com/user-attachments/assets/2699031f-8af2-45cd-8392-9f3d0db6eac5)
 
-<h3>over all</h3>
+<h3>PLAYER LEAVE ROOM OPTION</h3>
 
-![overall](https://github.com/user-attachments/assets/7d508a1b-bbfc-4f35-98be-0483726bb3d3)
+![player leave option](https://github.com/user-attachments/assets/db76d001-895b-4be2-a802-356923a0b3f0)
+
 
 <h2>🧐 Features</h2>
 
@@ -47,5 +50,6 @@ Here're some of the project's best features:
 * Clickable character pieces for the current player
 * Display valid moves as buttons when a character is selected below the grid.
 * Send move commands to the server when a valid move is chosen
-
+* History of moves
+* End game option
 
