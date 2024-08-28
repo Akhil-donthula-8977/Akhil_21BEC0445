@@ -14,7 +14,7 @@ Eraser IO link for plan :[Link](https://app.eraser.io/workspace/DnYLAtrH4inRLhYy
 
 ![userName](https://github.com/user-attachments/assets/687de7f1-3d01-45c5-ab3f-a39be44ea01c)
 
-<h3> ROM FULL NOTIFY AND GAmE READY : </h3>
+<h3> ROM FULL NOTIFY AND GAmE READY: </h3>
 
 ![room full notification](https://github.com/user-attachments/assets/f05bef4b-12d2-4b91-bf86-4e998acf13af)
 
@@ -26,11 +26,11 @@ Eraser IO link for plan :[Link](https://app.eraser.io/workspace/DnYLAtrH4inRLhYy
 
 ![turn notify and history](https://github.com/user-attachments/assets/280c3e44-859f-4547-9e34-a6e644642bc4)
 
-<h3>SHOW ALLOABLE TILES</h3>
+<h3> SHOW ALLOWABLE TILES </h3>
 
 ![showing alloable tiles to move](https://github.com/user-attachments/assets/64f2455e-71de-4e8c-82c1-20ddfd54a27a)
 
-<h3> WINNEr NOTIFY </h3>
+<h3> WINNER NOTIFY </h3>
 
 ![winner notifiy](https://github.com/user-attachments/assets/2699031f-8af2-45cd-8392-9f3d0db6eac5)
 
