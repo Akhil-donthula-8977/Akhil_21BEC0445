@@ -10,15 +10,15 @@ Eraser IO link for plan :[Link](https://app.eraser.io/workspace/DnYLAtrH4inRLhYy
 
 ![Full board](https://github.com/user-attachments/assets/56b0a84a-5deb-416e-954c-8759c2a0210e)
 
-<h3> SUER NAME FEATURE:  </H3>
+<h3> USERNAME FEATURE:  </H3>
 
 ![userName](https://github.com/user-attachments/assets/687de7f1-3d01-45c5-ab3f-a39be44ea01c)
 
-<h3> ROM FULL NOTIFY AND GAmE READY: </h3>
+<h3> ROOM FULL NOTIFY AND GAME READY: </h3>
 
 ![room full notification](https://github.com/user-attachments/assets/f05bef4b-12d2-4b91-bf86-4e998acf13af)
 
-<h3> WORONG PLAYER PICK NOTIFY TOAST:  </h3>
+<h3> WRONG PLAYER PICK NOTIFY TOAST:  </h3>
 
 ![wrong token notification](https://github.com/user-attachments/assets/52f10197-bf99-4dd7-9f3f-8576fb5c1f49)
 
